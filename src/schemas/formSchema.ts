@@ -8,7 +8,7 @@ export const formSchema = z
 			.nonempty('名前は必須です')
 			.min(2, '名前は2文字以上で入力してください')
 			.max(20, '名前は20文字以内で入力してください'),
-		gender: z.enum([GENDER.MEN, GENDER.WOMEN, GENDER.WOMEN], {
+		gender: z.enum([GENDER.MEN, GENDER.WOMEN, GENDER.OTHER], {
 			errorMap: () => ({ message: '性別は必須です' })
 		}),
 		userNameKana: z
