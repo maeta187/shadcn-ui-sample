@@ -28,6 +28,7 @@ export const formSchema = z
 			.string()
 			.nonempty('メールアドレスは必須です')
 			.email('正しいメールアドレスを入力してください'),
+		prefecture: z.string().nonempty('都道府県は必須です'),
 		password: z
 			.string()
 			.nonempty('パスワードは必須です')
