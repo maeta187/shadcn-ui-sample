@@ -5,10 +5,15 @@ import { NextResponse } from 'next/server'
 export default async function Page() {
 	const prefectures = await getPrefecture('prefecture')
 	if (prefectures instanceof NextResponse) {
-		// TODO: 適切なエラーハンドリングを行う
 		const errorData = await prefectures.json()
 		console.error(errorData)
-		return
+		return (
+			<div className='flex h-screen items-center justify-center'>
+				<p className='text-red-500'>
+					都道府県の取得中にエラーが発生しました。しばらくしてからもう一度お試しください。
+				</p>
+			</div>
+		)
 	}
 	const prefectureOptions = prefectures.map((prefecture) => ({
 		value: prefecture.code.toString(),

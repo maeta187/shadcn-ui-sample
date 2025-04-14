@@ -16,10 +16,10 @@ query {
 
 export async function getPrefecture(queryName: string) {
 	if (!END_POINT || !API_KEY) {
-		return NextResponse.json(
-			{ error: 'END_POINT or API_KEY is not defined' },
-			{ status: 500 }
-		)
+		return NextResponse.json({
+			error: 'END_POINT or API_KEY is not defined',
+			status: 500
+		})
 	}
 
 	try {
@@ -34,10 +34,10 @@ export async function getPrefecture(queryName: string) {
 
 		// レスポンスが正常でない場合はエラーをスロー
 		if (!response.ok) {
-			return NextResponse.json(
-				{ error: `Failed to fetch data: ${response.statusText}` },
-				{ status: response.status }
-			)
+			return NextResponse.json({
+				error: `Failed to fetch data: ${response.statusText}`,
+				status: response.status
+			})
 		}
 
 		// レスポンスをJSON形式で取得
@@ -45,8 +45,13 @@ export async function getPrefecture(queryName: string) {
 		return Object.values(data.data[queryName]).map((v) => v)
 	} catch (error) {
 		if (error instanceof Error) {
-			throw new Error(`Failed to get prefecture: ${error.message}`)
+			return NextResponse.json({
+				error: `${error.message}`,
+				status: 500
+			})
 		}
-		throw new Error('Failed to get prefecture: Unknown error')
+		return NextResponse.json({
+			error: 'An unknown error occurred'
+		})
 	}
 }
