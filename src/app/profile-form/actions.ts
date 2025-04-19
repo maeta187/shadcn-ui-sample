@@ -2,8 +2,8 @@
 import { PrefectureResponse } from '@/types'
 import { NextResponse } from 'next/server'
 
-const END_POINT = process.env.END_POINT
-const API_KEY = process.env.API_KEY
+const END_POINT = process.env.END_POINT!
+const API_KEY = process.env.API_KEY!
 
 const query = `
 query {
@@ -15,13 +15,6 @@ query {
 `
 
 export async function getPrefecture(queryName: string) {
-	if (!END_POINT || !API_KEY) {
-		return NextResponse.json({
-			error: 'END_POINT or API_KEY is not defined',
-			status: 500
-		})
-	}
-
 	try {
 		const response = await fetch(END_POINT, {
 			method: 'POST',
