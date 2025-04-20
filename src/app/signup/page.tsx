@@ -1,5 +1,5 @@
-import { ProfileForm } from '@/app/profile-form/_components/ProfileForm'
-import { getPrefecture } from '@/app/profile-form/actions'
+import { SignupForm } from '@/app/signup/_components/SignupForm'
+import { getPrefecture } from '@/app/signup/actions'
 import { NextResponse } from 'next/server'
 
 export default async function Page() {
@@ -21,8 +21,8 @@ export default async function Page() {
 	}))
 
 	return (
-		<div className='flex h-screen items-center justify-center'>
-			<ProfileForm prefectureOptions={prefectureOptions} />
+		<div className='flex min-h-[calc(100vh-64px-64px)] items-center justify-center'>
+			<SignupForm prefectureOptions={prefectureOptions} />
 		</div>
 	)
 }
