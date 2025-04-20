@@ -4,6 +4,7 @@ import type {
 	PrefectureOptions,
 	PrefectureResponse
 } from '@/types/prefectures'
+import type { SignupResult } from '@/types/signup'
 
 export type Gender = {
 	MEN: 'MEN'
@@ -11,4 +12,10 @@ export type Gender = {
 	OTHER: 'OTHER'
 }
 
-export { FormType, Prefecture, PrefectureOptions, PrefectureResponse }
+export {
+	FormType,
+	Prefecture,
+	PrefectureOptions,
+	PrefectureResponse,
+	SignupResult
+}
