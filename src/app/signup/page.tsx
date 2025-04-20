@@ -1,8 +1,19 @@
 import { SignupForm } from '@/app/signup/_components/SignupForm'
 import { getPrefecture } from '@/app/signup/actions'
+import { createClient } from '@/lib/supabaseServerClient'
+import { redirect } from 'next/navigation'
 import { NextResponse } from 'next/server'
 
 export default async function Page() {
+	const supabase = createClient()
+	const {
+		data: { user }
+	} = await (await supabase).auth.getUser()
+
+	if (user) {
+		redirect('/')
+	}
+
 	const prefectures = await getPrefecture('prefecture')
 	if (prefectures instanceof NextResponse) {
 		const errorData = await prefectures.json()
