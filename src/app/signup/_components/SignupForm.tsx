@@ -1,6 +1,6 @@
 'use client'
 
-import { InputForm } from '@/app/profile-form/_components/InputForm'
+import { InputForm } from '@/app/signup/_components/InputForm'
 import { GENDER } from '@/constants'
 import { formSchema } from '@/schemas'
 import { FormType, PrefectureOptions } from '@/types'
@@ -22,7 +22,7 @@ const defaultValues = {
 	confirmPassword: ''
 }
 
-export const ProfileForm = ({ prefectureOptions }: FormProps) => {
+export const SignupForm = ({ prefectureOptions }: FormProps) => {
 	const form = useForm<FormType>({
 		resolver: zodResolver(formSchema),
 		defaultValues
