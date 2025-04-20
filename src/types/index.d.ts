@@ -6,9 +6,9 @@ import type {
 } from '@/types/prefectures'
 
 export type Gender = {
-	MEN: 'men'
-	WOMEN: 'women'
-	OTHER: 'other'
+	MEN: 'MEN'
+	WOMEN: 'WOMEN'
+	OTHER: 'OTHER'
 }
 
 export { FormType, Prefecture, PrefectureOptions, PrefectureResponse }

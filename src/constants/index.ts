@@ -3,9 +3,9 @@ import { Gender } from '@/types'
 /** 性別 */
 export const GENDER: Readonly<Gender> = {
 	/** 男性 */
-	MEN: 'men',
+	MEN: 'MEN',
 	/** 女性 */
-	WOMEN: 'women',
+	WOMEN: 'WOMEN',
 	/** その他 */
-	OTHER: 'other'
+	OTHER: 'OTHER'
 }
