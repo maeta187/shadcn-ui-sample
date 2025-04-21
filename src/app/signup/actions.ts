@@ -1,9 +1,11 @@
 'use server'
-import { PrefectureResponse } from '@/types'
+import { createClient } from '@/lib/supabaseServerClient'
+import type { FormType, PrefectureResponse, SignupResult } from '@/types'
 import { NextResponse } from 'next/server'
 
 const END_POINT = process.env.END_POINT!
 const API_KEY = process.env.API_KEY!
+const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_APP_URL!
 
 const query = `
 query {
@@ -46,5 +48,74 @@ export async function getPrefecture(queryName: string) {
 		return NextResponse.json({
 			error: 'An unknown error occurred'
 		})
+	}
+}
+
+export async function signup(input: FormType): Promise<SignupResult> {
+	try {
+		const supabase = await createClient()
+		// アカウント作成
+		const { data: signupData, error: signupError } = await supabase.auth.signUp(
+			{
+				email: input.email,
+				password: input.password,
+				options: { emailRedirectTo: `${NEXT_PUBLIC_URL}/signup/verify` }
+			}
+		)
+
+		if (!signupData?.user) {
+			return {
+				success: false,
+				message: signupError?.message || 'アカウント作成に失敗しました',
+				status: signupError?.status || 500,
+				error: signupError
+			}
+		}
+
+		if (
+			!signupData.user.identities ||
+			signupData.user.identities.length === 0
+		) {
+			return {
+				success: false,
+				message: signupError?.message || '既に登録済みのアカウントです',
+				status: signupError?.status || 500,
+				error: signupError
+			}
+		}
+
+		// プロフィール更新
+		const { error: updateError } = await supabase
+			.from('profiles')
+			.update({
+				user_name: input.userName,
+				user_name_kana: input.userNameKana,
+				gender: input.gender,
+				phone_number: input.phoneNumber,
+				prefecture: input.prefecture
+			})
+			.eq('id', signupData.user.id)
+
+		if (updateError) {
+			return {
+				success: false,
+				message: updateError.message || 'プロフィール更新に失敗しました',
+				status: 500,
+				error: updateError
+			}
+		}
+
+		return {
+			success: true,
+			message: 'アカウントを作成しました'
+		}
+	} catch (error) {
+		return {
+			success: false,
+			message:
+				error instanceof Error ? error.message : '予期せぬエラーが発生しました',
+			status: 500,
+			error
+		}
 	}
 }

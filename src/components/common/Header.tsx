@@ -1,11 +1,16 @@
+'use client'
 import { Button } from '@/components/ui/button'
 import {
 	NavigationMenu,
 	NavigationMenuItem,
-	NavigationMenuLink,
 	NavigationMenuList
 } from '@/components/ui/navigation-menu'
+import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
+
+interface NavigationProps {
+	user: User | null
+}
 
 const navigationList: { title: string; href: string }[] = [
 	{
@@ -14,7 +19,9 @@ const navigationList: { title: string; href: string }[] = [
 	}
 ]
 
-export const Header = () => {
+export const Header = ({ user }: NavigationProps) => {
+	console.log(user)
+
 	return (
 		<header className='flex h-16 items-center border-b px-6'>
 			<Button variant='ghost' asChild>
@@ -31,11 +38,9 @@ const HeaderNavigationMenu = () => {
 			<NavigationMenuList className='flex items-center gap-4'>
 				{navigationList.map((navigation, i) => (
 					<NavigationMenuItem key={i}>
-						<NavigationMenuLink asChild>
-							<Button variant='default' className='hover:text-white' asChild>
-								<Link href={navigation.href}>{navigation.title}</Link>
-							</Button>
-						</NavigationMenuLink>
+						<Button variant='default' className='hover:text-white' asChild>
+							<Link href={navigation.href}>{navigation.title}</Link>
+						</Button>
 					</NavigationMenuItem>
 				))}
 			</NavigationMenuList>

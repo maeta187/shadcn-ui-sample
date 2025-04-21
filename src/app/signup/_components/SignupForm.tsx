@@ -1,11 +1,14 @@
 'use client'
 
 import { InputForm } from '@/app/signup/_components/InputForm'
+import { signup } from '@/app/signup/actions'
 import { GENDER } from '@/constants'
 import { formSchema } from '@/schemas'
 import { FormType, PrefectureOptions } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 type FormProps = {
 	prefectureOptions: PrefectureOptions[]
@@ -23,18 +26,34 @@ const defaultValues = {
 }
 
 export const SignupForm = ({ prefectureOptions }: FormProps) => {
+	const router = useRouter()
+
 	const form = useForm<FormType>({
 		resolver: zodResolver(formSchema),
 		defaultValues
 	})
 
 	const onSubmit = async (data: FormType) => {
-		await new Promise((resolve) =>
-			setTimeout(() => {
-				console.log('Form submitted:', data)
-				resolve('Success')
-			}, 3000)
-		)
+		await new Promise(async (resolve) => {
+			try {
+				const res = await signup(data)
+				if (!res?.success) {
+					toast.error(res?.message || 'アカウント登録に失敗しました')
+					return
+				}
+				resolve(res.success)
+				toast.success('アカウントを登録しました')
+				router.push('/signup/success')
+				router.refresh()
+			} catch (error) {
+				console.error(error)
+				if (error instanceof Error) {
+					toast.error(error.message)
+				} else {
+					toast.error('アカウント登録に失敗しました')
+				}
+			}
+		})
 	}
 
 	const onReset = () => {
