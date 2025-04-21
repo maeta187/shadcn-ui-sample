@@ -1,11 +1,11 @@
 import { Footer } from '@/components/common/Footer'
 import { Header } from '@/components/common/Header'
+import { Toaster } from '@/components/ui/sonner'
 import { createClient } from '@/lib/supabaseServerClient'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin']
@@ -42,7 +42,8 @@ export default async function RootLayout({
 				)}
 			>
 				<Header user={user} />
-				{children}
+				<main>{children}</main>
+				<Toaster position='top-right' closeButton={true} />
 				<Footer />
 			</body>
 		</html>
