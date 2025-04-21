@@ -6,7 +6,9 @@ import { GENDER } from '@/constants'
 import { formSchema } from '@/schemas'
 import { FormType, PrefectureOptions } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 type FormProps = {
 	prefectureOptions: PrefectureOptions[]
@@ -24,7 +26,7 @@ const defaultValues = {
 }
 
 export const SignupForm = ({ prefectureOptions }: FormProps) => {
-	// const [error, setError] = useState('')
+	const router = useRouter()
 
 	const form = useForm<FormType>({
 		resolver: zodResolver(formSchema),
@@ -36,13 +38,20 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 			try {
 				const res = await signup(data)
 				if (!res?.success) {
-					// setError('アカウント登録に失敗しました')
+					toast.error(res?.message || 'アカウント登録に失敗しました')
 					return
 				}
 				resolve(res.success)
+				toast.success('アカウントを登録しました')
+				router.push('/signup/success')
+				router.refresh()
 			} catch (error) {
 				console.error(error)
-				// setError('アカウント登録に失敗しました')
+				if (error instanceof Error) {
+					toast.error(error.message)
+				} else {
+					toast.error('アカウント登録に失敗しました')
+				}
 			}
 		})
 	}
