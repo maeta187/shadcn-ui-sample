@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 
 const END_POINT = process.env.END_POINT!
 const API_KEY = process.env.API_KEY!
-const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL!
+const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_APP_URL!
 
 const query = `
 query {
@@ -59,7 +59,7 @@ export async function signup(input: FormType): Promise<SignupResult> {
 			{
 				email: input.email,
 				password: input.password,
-				options: { emailRedirectTo: `${NEXT_PUBLIC_URL}/auth/verify` }
+				options: { emailRedirectTo: `${NEXT_PUBLIC_URL}/signup/verify` }
 			}
 		)
 
