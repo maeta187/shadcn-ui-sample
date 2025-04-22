@@ -1,3 +1,3 @@
-import { SignupFormSchema } from '@/schemas/formSchema'
+import { LoginFormSchema, SignupFormSchema } from '@/schemas/formSchema'
 
-export { SignupFormSchema }
+export { LoginFormSchema, SignupFormSchema }
