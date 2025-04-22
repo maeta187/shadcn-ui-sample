@@ -42,7 +42,7 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 					return
 				}
 				resolve(res.success)
-				toast.success('アカウントを登録しました')
+				toast.success(res.message)
 				router.push('/signup/success')
 				router.refresh()
 			} catch (error) {
@@ -62,7 +62,7 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 
 	return (
 		<div className='mx-auto w-2xl rounded-lg bg-white p-6 shadow-2xl'>
-			<h1 className='text-2xl font-bold'>プロフィール登録</h1>
+			<h2 className='text-2xl font-bold'>プロフィール登録</h2>
 			<InputForm
 				form={form}
 				onSubmit={onSubmit}
