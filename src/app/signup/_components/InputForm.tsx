@@ -17,36 +17,36 @@ import {
 	SelectValue
 } from '@/components/ui/select'
 import { GENDER } from '@/constants'
-import { FormType, PrefectureOptions } from '@/types'
+import { PrefectureOptions, SignupFormType } from '@/types'
 import { HTMLInputTypeAttribute } from 'react'
 import { Control, SubmitHandler, UseFormReturn } from 'react-hook-form'
 
 type InputProps = {
-	name: keyof FormType
+	name: keyof SignupFormType
 	type?: HTMLInputTypeAttribute
 	placeholder?: string
 	label: string
-	control: Control<FormType>
+	control: Control<SignupFormType>
 }
 
 type RadioProps = {
-	name: keyof FormType
+	name: keyof SignupFormType
 	label: string
-	control: Control<FormType>
+	control: Control<SignupFormType>
 	options: { value: string; label: string }[]
 }
 
 type SelectProps = {
-	name: keyof FormType
+	name: keyof SignupFormType
 	label: string
-	control: Control<FormType>
+	control: Control<SignupFormType>
 	options: { value: string; label: string }[]
 	placeholder?: string
 }
 
 type InputFormProps = {
-	form: UseFormReturn<FormType>
-	onSubmit: SubmitHandler<FormType>
+	form: UseFormReturn<SignupFormType>
+	onSubmit: SubmitHandler<SignupFormType>
 	prefectureOptions: PrefectureOptions[]
 	handleReset: () => void
 }

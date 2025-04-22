@@ -1,7 +1,7 @@
 import { GENDER } from '@/constants'
 import { z } from 'zod'
 
-export const formSchema = z
+export const SignupFormSchema = z
 	.object({
 		userName: z
 			.string()
@@ -43,3 +43,18 @@ export const formSchema = z
 		message: 'パスワードが一致しません',
 		path: ['confirmPassword']
 	})
+
+export const LoginFormSchema = z.object({
+	email: z
+		.string()
+		.nonempty('メールアドレスは必須です')
+		.email('正しいメールアドレスを入力してください'),
+	password: z
+		.string()
+		.nonempty('パスワードは必須です')
+		.min(8, 'パスワードは8文字以上で入力してください')
+		.regex(
+			/^(?=.*[a-z])(?=.*\d)[a-z\d]{8,}$/,
+			'パスワードは小文字と数字を含む必要があります'
+		)
+})

@@ -1,6 +1,6 @@
 'use server'
 import { createClient } from '@/lib/supabaseServerClient'
-import type { FormType, PrefectureResponse, SignupResult } from '@/types'
+import type { PrefectureResponse, SignupFormType, SignupResult } from '@/types'
 import { NextResponse } from 'next/server'
 
 const END_POINT = process.env.END_POINT!
@@ -51,7 +51,7 @@ export async function getPrefecture(queryName: string) {
 	}
 }
 
-export async function signup(input: FormType): Promise<SignupResult> {
+export async function signup(input: SignupFormType): Promise<SignupResult> {
 	try {
 		const supabase = await createClient()
 		// アカウント作成
