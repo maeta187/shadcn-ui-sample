@@ -28,8 +28,8 @@ export default async function RootLayout({
 }>) {
 	const supabase = await createClient()
 	const {
-		data: { user }
-	} = await supabase.auth.getUser()
+		data: { session }
+	} = await supabase.auth.getSession()
 
 	return (
 		<html lang='ja'>
@@ -41,7 +41,7 @@ export default async function RootLayout({
 					'min-h-dvh'
 				)}
 			>
-				<Header user={user} />
+				<Header session={session} />
 				<main>{children}</main>
 				<Toaster position='top-right' closeButton={true} />
 				<Footer />
