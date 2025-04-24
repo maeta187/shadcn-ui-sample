@@ -1,12 +1,17 @@
 'use client'
+
+import { signOut } from '@/app/(signout)/actions'
+import { Dialog } from '@/components/common/Dialog'
 import { Button } from '@/components/ui/button'
 import {
 	NavigationMenu,
 	NavigationMenuItem,
 	NavigationMenuList
 } from '@/components/ui/navigation-menu'
+import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid'
 import { Session } from '@supabase/supabase-js'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface NavigationProps {
 	session: Session | null
@@ -24,6 +29,13 @@ export const Header = ({ session }: NavigationProps) => {
 }
 
 const HeaderNavigationMenu = ({ session }: NavigationProps) => {
+	const router = useRouter()
+	const handleSignOut = async () => {
+		await signOut()
+		router.push('/')
+		router.refresh()
+	}
+
 	const navigationList: {
 		title: string
 		href: string
@@ -63,6 +75,15 @@ const HeaderNavigationMenu = ({ session }: NavigationProps) => {
 							</Button>
 						</NavigationMenuItem>
 					))}
+				{!!session && (
+					<Dialog
+						title='ログアウトしますが、宜しいですか？'
+						actionText='ログアウト'
+						onClick={handleSignOut}
+					>
+						<ArrowRightStartOnRectangleIcon className='h-8 w-8 cursor-pointer' />
+					</Dialog>
+				)}
 			</NavigationMenuList>
 		</NavigationMenu>
 	)
