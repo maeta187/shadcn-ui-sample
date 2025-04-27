@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-type FormProps = {
+interface FormProps {
 	prefectureOptions: PrefectureOptions[]
 }
 
@@ -46,6 +46,7 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 				router.push('/signup/success')
 				router.refresh()
 			} catch (error) {
+				// eslint-disable-next-line no-console
 				console.error(error)
 				if (error instanceof Error) {
 					toast.error(error.message)

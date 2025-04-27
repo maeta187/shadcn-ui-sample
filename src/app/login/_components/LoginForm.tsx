@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-const defaultValues = {
+const defaultValues: LoginFormType = {
 	email: '',
 	password: ''
 }

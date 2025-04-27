@@ -17,6 +17,7 @@ export default async function Page() {
 	const prefectures = await getPrefecture('prefecture')
 	if (prefectures instanceof NextResponse) {
 		const errorData = await prefectures.json()
+		// eslint-disable-next-line no-console
 		console.error(errorData)
 		return (
 			<div className='flex h-screen items-center justify-center'>

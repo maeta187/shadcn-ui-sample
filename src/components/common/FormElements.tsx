@@ -14,40 +14,39 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select'
-import { LoginFormType, SignupFormType } from '@/types'
 import { HTMLInputTypeAttribute } from 'react'
-import { Control } from 'react-hook-form'
+import { Control, FieldValues, Path } from 'react-hook-form'
 
-type InputProps = {
-	name: keyof SignupFormType | keyof LoginFormType
+interface InputProps<T extends FieldValues> {
+	name: Path<T>
 	type?: HTMLInputTypeAttribute
 	placeholder?: string
 	label: string
-	control: Control<SignupFormType | LoginFormType>
+	control: Control<T>
 }
 
-type RadioProps = {
-	name: keyof SignupFormType
+interface RadioProps<T extends FieldValues> {
+	name: Path<T>
 	label: string
-	control: Control<SignupFormType>
+	control: Control<T>
 	options: { value: string; label: string }[]
 }
 
-type SelectProps = {
-	name: keyof SignupFormType
+interface SelectProps<T extends FieldValues> {
+	name: Path<T>
 	label: string
-	control: Control<SignupFormType>
+	control: Control<T>
 	options: { value: string; label: string }[]
 	placeholder?: string
 }
 
-export const InputElement = ({
+export const InputElement = <T extends FieldValues>({
 	label,
 	name,
 	type = 'text',
 	placeholder,
 	control
-}: InputProps) => {
+}: InputProps<T>) => {
 	return (
 		<FormField
 			control={control}
@@ -65,7 +64,12 @@ export const InputElement = ({
 	)
 }
 
-export const RadioElement = ({ label, name, control, options }: RadioProps) => {
+export const RadioElement = <T extends FieldValues>({
+	label,
+	name,
+	control,
+	options
+}: RadioProps<T>) => {
 	return (
 		<FormField
 			control={control}
@@ -99,13 +103,13 @@ export const RadioElement = ({ label, name, control, options }: RadioProps) => {
 	)
 }
 
-export const SelectElement = ({
+export const SelectElement = <T extends FieldValues>({
 	label,
 	name,
 	control,
 	options,
 	placeholder
-}: SelectProps) => {
+}: SelectProps<T>) => {
 	return (
 		<FormField
 			control={control}
