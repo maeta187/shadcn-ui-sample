@@ -4,7 +4,7 @@ import { Form } from '@/components/ui/form'
 import { LoginFormType } from '@/types'
 import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
-type InputFormProps = {
+interface InputFormProps {
 	form: UseFormReturn<LoginFormType>
 	onSubmit: SubmitHandler<LoginFormType>
 }

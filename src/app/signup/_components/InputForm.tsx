@@ -9,7 +9,7 @@ import { GENDER } from '@/constants'
 import { PrefectureOptions, SignupFormType } from '@/types'
 import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
-type InputFormProps = {
+interface InputFormProps {
 	form: UseFormReturn<SignupFormType>
 	onSubmit: SubmitHandler<SignupFormType>
 	prefectureOptions: PrefectureOptions[]
