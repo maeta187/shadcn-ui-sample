@@ -1,7 +1,6 @@
 'use server'
 import { createClient } from '@/lib/supabaseServerClient'
 import type { PrefectureResponse, SignupFormType, SignupResult } from '@/types'
-import { NextResponse } from 'next/server'
 
 const END_POINT = process.env.END_POINT!
 const API_KEY = process.env.API_KEY!
@@ -29,10 +28,7 @@ export async function getPrefecture(queryName: string) {
 
 		// レスポンスが正常でない場合はエラーをスロー
 		if (!response.ok) {
-			return NextResponse.json({
-				error: `Failed to fetch data: ${response.statusText}`,
-				status: response.status
-			})
+			throw new Error(response.statusText)
 		}
 
 		// レスポンスをJSON形式で取得
@@ -40,14 +36,11 @@ export async function getPrefecture(queryName: string) {
 		return Object.values(data.data[queryName]).map((v) => v)
 	} catch (error) {
 		if (error instanceof Error) {
-			return NextResponse.json({
-				error: `${error.message}`,
-				status: 500
-			})
+			throw new Error(error.message)
 		}
-		return NextResponse.json({
-			error: 'An unknown error occurred'
-		})
+		throw new Error(
+			'エラーが発生しました。\nしばらく時間を置いて操作してください。'
+		)
 	}
 }
 
