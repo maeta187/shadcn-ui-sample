@@ -1,6 +1,6 @@
 export default function Page() {
 	return (
-		<div className='flex min-h-[calc(100vh-64px-64px)] flex-col items-center justify-center'>
+		<div className='flex min-h-[calc(100vh-64px-64px)] flex-col items-center justify-center py-20'>
 			<h2 className='text-primary mb-5 border-b border-black pt-3 pb-5 text-center text-xl font-bold'>
 				アカウント本登録メール送信
 			</h2>
