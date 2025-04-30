@@ -44,7 +44,12 @@ export default async function RootLayout({
 			>
 				<Header session={session} />
 				<main>{children}</main>
-				<Toaster position='top-right' closeButton={true} />
+				<Toaster
+					position='top-right'
+					closeButton={true}
+					richColors
+					theme='light'
+				/>
 				<Footer />
 			</body>
 		</html>
