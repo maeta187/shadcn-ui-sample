@@ -20,7 +20,7 @@ export default async function Page() {
 	}))
 
 	return (
-		<div className='flex min-h-[calc(100vh-64px-64px)] items-center justify-center'>
+		<div className='flex min-h-[calc(100vh-64px-64px)] items-center justify-center py-20'>
 			<SignupForm prefectureOptions={prefectureOptions} />
 		</div>
 	)
