@@ -12,7 +12,7 @@ import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid'
 import { Session } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-
+import { toast } from 'sonner'
 interface NavigationProps {
 	session: Session | null
 }
@@ -32,6 +32,7 @@ const HeaderNavigationMenu = ({ session }: NavigationProps) => {
 	const router = useRouter()
 	const handleSignOut = async () => {
 		await signOut()
+		toast.info('ログアウトしました')
 		router.push('/')
 		router.refresh()
 	}
