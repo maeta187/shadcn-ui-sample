@@ -48,6 +48,7 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 			} catch (error) {
 				// eslint-disable-next-line no-console
 				console.error(error)
+				resolve(error)
 				if (error instanceof Error) {
 					toast.error(error.message)
 				} else {

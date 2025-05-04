@@ -35,6 +35,7 @@ export const LoginForm = () => {
 				router.push('/')
 				router.refresh()
 			} catch (error) {
+				resolve(error)
 				if (error instanceof Error) {
 					toast.error(error.message)
 				} else {
