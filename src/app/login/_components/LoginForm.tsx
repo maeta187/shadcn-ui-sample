@@ -2,6 +2,15 @@
 
 import { InputForm } from '@/app/login/_components/InputForm'
 import { login } from '@/app/login/actions'
+import { Button } from '@/components/ui/button'
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardTitle
+} from '@/components/ui/card'
+import { Form } from '@/components/ui/form'
 import { LoginFormSchema } from '@/schemas'
 import type { LoginFormType } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -22,12 +31,19 @@ export const LoginForm = () => {
 		defaultValues
 	})
 
+	const {
+		handleSubmit,
+		control,
+		formState: { isSubmitting }
+	} = form
+
 	const onSubmit = async (data: LoginFormType) => {
 		await new Promise(async (resolve) => {
 			try {
 				const res = await login(data)
 				if (!res?.success) {
 					toast.error(res?.message || 'ログインに失敗しました')
+					resolve(res.success)
 					return
 				}
 				resolve(res.success)
@@ -46,9 +62,22 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<div className='mx-auto w-2xl rounded-lg bg-white p-6 shadow-2xl'>
-			<h2 className='text-2xl font-bold'>ログイン</h2>
-			<InputForm form={form} onSubmit={onSubmit} />
-		</div>
+		<Card className='w-2xl shadow-2xl'>
+			<Form {...form}>
+				<form onSubmit={handleSubmit(onSubmit)} className='space-y-8'>
+					<CardHeader>
+						<CardTitle className='text-2xl font-bold'>ログイン</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<InputForm control={control} />
+					</CardContent>
+					<CardFooter className='justify-end'>
+						<Button type='submit' size='lg' disabled={isSubmitting}>
+							{isSubmitting ? 'ログイン中...' : 'ログイン'}
+						</Button>
+					</CardFooter>
+				</form>
+			</Form>
+		</Card>
 	)
 }
