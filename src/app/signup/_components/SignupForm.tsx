@@ -93,15 +93,6 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 							control={control}
 						/>
 					</CardContent>
-					{/* <div className='mx-auto w-2xl rounded-lg bg-white p-6 shadow-2xl'>
-						<h2 className='text-2xl font-bold'>プロフィール登録</h2>
-						<InputForm
-							form={form}
-							onSubmit={onSubmit}
-							prefectureOptions={prefectureOptions}
-							handleReset={onReset}
-						/>
-					</div> */}
 					<CardFooter className='justify-end gap-4'>
 						<Button type='button' variant='outline' onClick={onReset}>
 							リセット
