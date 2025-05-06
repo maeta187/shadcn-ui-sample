@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 import { redirect } from 'next/navigation'
 import { LoginForm } from './_components/LoginForm'
 

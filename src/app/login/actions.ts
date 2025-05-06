@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 import type { LoginFormType } from '@/types'
 
 export const login = async (input: LoginFormType) => {

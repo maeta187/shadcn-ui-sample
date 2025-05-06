@@ -1,5 +1,5 @@
 'use server'
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 import type { PrefectureResponse, SignupFormType, SignupResult } from '@/types'
 
 const END_POINT = process.env.END_POINT!
