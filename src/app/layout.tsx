@@ -1,7 +1,7 @@
 import { Footer } from '@/components/common/Footer'
 import { Header } from '@/components/common/Header'
 import { Toaster } from '@/components/ui/sonner'
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'

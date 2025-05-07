@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 
 export const signOut = async () => {
 	try {

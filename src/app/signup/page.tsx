@@ -1,6 +1,6 @@
 import { SignupForm } from '@/app/signup/_components/SignupForm'
 import { getPrefecture } from '@/app/signup/actions'
-import { createClient } from '@/lib/supabaseServerClient'
+import { createClient } from '@/lib/supabase/supabaseServerClient'
 import { redirect } from 'next/navigation'
 
 export default async function Page() {
