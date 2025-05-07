@@ -4,7 +4,6 @@ import type { PrefectureResponse, SignupFormType, SignupResult } from '@/types'
 
 const END_POINT = process.env.END_POINT!
 const API_KEY = process.env.API_KEY!
-const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_APP_URL!
 
 const query = `
 query {
@@ -51,8 +50,7 @@ export async function signup(input: SignupFormType): Promise<SignupResult> {
 		const { data: signupData, error: signupError } = await supabase.auth.signUp(
 			{
 				email: input.email,
-				password: input.password,
-				options: { emailRedirectTo: `${NEXT_PUBLIC_URL}/signup/verify` }
+				password: input.password
 			}
 		)
 
