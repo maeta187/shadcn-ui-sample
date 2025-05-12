@@ -43,7 +43,7 @@ export const LoginForm = () => {
 				const res = await login(data)
 				if (!res?.success) {
 					toast.error(res?.message || 'ログインに失敗しました')
-					resolve(res.success)
+					resolve(res.error)
 					return
 				}
 				resolve(res.success)
@@ -51,6 +51,8 @@ export const LoginForm = () => {
 				router.push('/')
 				router.refresh()
 			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error)
 				resolve(error)
 				if (error instanceof Error) {
 					toast.error(error.message)
