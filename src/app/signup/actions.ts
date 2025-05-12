@@ -57,7 +57,7 @@ export async function signup(input: SignupFormType): Promise<SignupResult> {
 		if (!signupData?.user) {
 			return {
 				success: false,
-				message: signupError?.message || 'アカウント作成に失敗しました',
+				message: 'アカウント作成に失敗しました',
 				status: signupError?.status || 500,
 				error: signupError
 			}
@@ -69,7 +69,7 @@ export async function signup(input: SignupFormType): Promise<SignupResult> {
 		) {
 			return {
 				success: false,
-				message: signupError?.message || '既に登録済みのアカウントです',
+				message: '既に登録済みのアカウントです',
 				status: signupError?.status || 500,
 				error: signupError
 			}
@@ -90,7 +90,7 @@ export async function signup(input: SignupFormType): Promise<SignupResult> {
 		if (updateError) {
 			return {
 				success: false,
-				message: updateError.message || 'プロフィール更新に失敗しました',
+				message: 'プロフィール更新に失敗しました',
 				status: 500,
 				error: updateError
 			}
