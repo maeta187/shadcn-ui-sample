@@ -24,7 +24,9 @@ export const signOut = async () => {
 		return {
 			success: false,
 			message:
-				error instanceof Error ? error.message : '予期せぬエラーが発生しました',
+				error instanceof Error
+					? error.message
+					: 'エラーが発生しました。時間おいてログインして下さい。',
 			status: 500,
 			error
 		}
