@@ -13,6 +13,7 @@ import { Session } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+
 interface NavigationProps {
 	session: Session | null
 }
@@ -30,7 +31,7 @@ export const Header = ({ session }: NavigationProps) => {
 
 const HeaderNavigationMenu = ({ session }: NavigationProps) => {
 	const router = useRouter()
-	const handleSignOut = async () => {
+	const onSignOut = async () => {
 		await signOut()
 		toast.info('ログアウトしました')
 		router.push('/')
@@ -80,7 +81,7 @@ const HeaderNavigationMenu = ({ session }: NavigationProps) => {
 					<Dialog
 						title='ログアウトしますが、宜しいですか？'
 						actionText='ログアウト'
-						onClick={handleSignOut}
+						onClick={onSignOut}
 					>
 						<ArrowRightStartOnRectangleIcon className='h-8 w-8 cursor-pointer' />
 					</Dialog>
