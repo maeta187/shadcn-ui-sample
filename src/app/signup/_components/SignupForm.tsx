@@ -54,7 +54,7 @@ export const SignupForm = ({ prefectureOptions }: FormProps) => {
 				const res = await signup(data)
 				if (!res?.success) {
 					toast.error(res?.message || 'アカウント登録に失敗しました')
-					resolve(res.success)
+					resolve(res.error)
 					return
 				}
 				resolve(res.success)
