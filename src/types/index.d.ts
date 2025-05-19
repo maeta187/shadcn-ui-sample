@@ -1,4 +1,8 @@
-import type { LoginFormType, SignupFormType } from '@/types/formType'
+import type {
+	LoginFormType,
+	ResetPassWordFormType,
+	SignupFormType
+} from '@/types/formType'
 import type {
 	Prefecture,
 	PrefectureOptions,
@@ -17,6 +21,7 @@ export {
 	Prefecture,
 	PrefectureOptions,
 	PrefectureResponse,
+	ResetPassWordFormType,
 	SignupFormType,
 	SignupResult
 }
