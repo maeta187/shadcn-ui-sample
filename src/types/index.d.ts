@@ -1,6 +1,7 @@
 import type {
 	LoginFormType,
 	ResetPassWordFormType,
+	SetPassWordFormType,
 	SignupFormType
 } from '@/types/formType'
 import type {
@@ -22,6 +23,7 @@ export {
 	PrefectureOptions,
 	PrefectureResponse,
 	ResetPassWordFormType,
+	SetPassWordFormType,
 	SignupFormType,
 	SignupResult
 }
