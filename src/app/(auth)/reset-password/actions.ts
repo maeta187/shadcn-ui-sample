@@ -8,13 +8,13 @@ export const resetPassWord = async ({ email }: ResetPassWordFormType) => {
 		const supabase = await createClient()
 
 		const { error } = await supabase.auth.resetPasswordForEmail(email, {
-			redirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/reset-password/confirm`
+			redirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/auth/password/confirm`
 		})
 
 		if (error) {
 			return {
 				success: false,
-				message: 'メール送信に失敗しました。しばらくしてから再度お試しください',
+				message: 'メール送信に失敗しました。再度メールを送信して下さい',
 				status: error?.status || 500,
 				error: error
 			}
