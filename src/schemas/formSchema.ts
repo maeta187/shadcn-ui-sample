@@ -55,3 +55,16 @@ export const LoginFormSchema = SignupFormFields.pick({
 export const ResetPassWordSchema = SignupFormFields.pick({
 	email: true
 })
+
+export const SetPassWordFormFields = SignupFormFields.pick({
+	password: true,
+	confirmPassword: true
+})
+
+export const SetPassWordFormSchema = SetPassWordFormFields.refine(
+	(data) => data.password === data.confirmPassword,
+	{
+		message: 'パスワードが一致しません',
+		path: ['confirmPassword']
+	}
+)
