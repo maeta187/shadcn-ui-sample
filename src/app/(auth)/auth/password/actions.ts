@@ -21,6 +21,8 @@ export const setPassword = async (input: SetPassWordFormType) => {
 			}
 		}
 
+		await supabase.auth.signOut()
+
 		return {
 			success: true,
 			message: 'パスワード再設定完了しました'
