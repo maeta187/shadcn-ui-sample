@@ -14,6 +14,7 @@ import { Form } from '@/components/ui/form'
 import { LoginFormSchema } from '@/schemas'
 import type { LoginFormType } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -73,10 +74,13 @@ export const LoginForm = () => {
 					<CardContent>
 						<InputForm control={control} />
 					</CardContent>
-					<CardFooter className='justify-end'>
+					<CardFooter className='flex-col justify-end'>
 						<Button type='submit' size='lg' disabled={isSubmitting}>
 							{isSubmitting ? 'ログイン中...' : 'ログイン'}
 						</Button>
+						<Link className='mt-5 text-sm' href='/reset-password'>
+							パスワードを忘れた場合
+						</Link>
 					</CardFooter>
 				</form>
 			</Form>
