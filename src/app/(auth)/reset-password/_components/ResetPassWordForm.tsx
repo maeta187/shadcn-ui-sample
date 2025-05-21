@@ -11,13 +11,12 @@ import {
 } from '@/components/ui/card'
 import { Form } from '@/components/ui/form'
 import { ResetPassWordSchema } from '@/schemas'
+import type { ResetPassWordFormType } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { InputForm } from './InputForm'
-
-import type { ResetPassWordFormType } from '@/types'
 
 const defaultValues: ResetPassWordFormType = {
 	email: ''
@@ -57,7 +56,7 @@ export const ResetPassWordForm = () => {
 				if (error instanceof Error) {
 					toast.error(error.message)
 				} else {
-					toast.error('アカウント登録に失敗しました')
+					toast.error('メール送信に失敗しました。')
 				}
 			}
 		})
