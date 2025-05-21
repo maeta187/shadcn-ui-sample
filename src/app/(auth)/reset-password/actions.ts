@@ -8,7 +8,7 @@ export const resetPassWord = async ({ email }: ResetPassWordFormType) => {
 		const supabase = await createClient()
 
 		const { error } = await supabase.auth.resetPasswordForEmail(email, {
-			redirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/auth/password/confirm`
+			redirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/auth/password`
 		})
 
 		if (error) {
