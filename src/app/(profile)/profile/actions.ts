@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/supabaseServerClient'
+import type { UpdateProfileType } from '@/types'
 
 export const getUser = async () => {
 	try {
@@ -28,6 +29,7 @@ export const getUser = async () => {
 			}
 
 			const profile = {
+				id: user.id,
 				userName: profileData.user_name,
 				userNameKana: profileData.user_name_kana,
 				gender: profileData.gender,
@@ -44,6 +46,44 @@ export const getUser = async () => {
 	} catch (error) {
 		if (error instanceof Error) {
 			throw new Error(error.message)
+		}
+	}
+}
+
+export const updateProfile = async (arg: UpdateProfileType) => {
+	try {
+		const supabase = await createClient()
+		const { error } = await supabase
+			.from('profiles')
+			.update({
+				user_name: arg.userName,
+				user_name_kana: arg.userNameKana,
+				gender: arg.gender,
+				phone_number: arg.phoneNumber,
+				prefecture: arg.prefecture
+			})
+			.eq('id', arg.id)
+
+		if (error) {
+			return {
+				success: false,
+				message: 'プロフィール更新に失敗しました',
+				status: 500,
+				error
+			}
+		}
+
+		return {
+			success: true,
+			message: 'プロフィールを更新しました'
+		}
+	} catch (error) {
+		return {
+			success: false,
+			message:
+				error instanceof Error ? error.message : '予期せぬエラーが発生しました',
+			status: 500,
+			error
 		}
 	}
 }

@@ -1,12 +1,15 @@
 'use client'
 
 import { InputForm } from '@/app/(profile)/profile/_components/InputForm'
+import { updateProfile } from '@/app/(profile)/profile/actions'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { ProfileFormSchema } from '@/schemas'
 import { PrefectureOptions, ProfileFormType } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 interface EditProfileProps {
 	profile: Profile
@@ -17,6 +20,8 @@ export const EditProfile = ({
 	profile,
 	prefectureOptions
 }: EditProfileProps) => {
+	const router = useRouter()
+
 	const defaultValues: ProfileFormType = {
 		userName: profile.userName,
 		gender: profile.gender,
@@ -37,7 +42,32 @@ export const EditProfile = ({
 	} = form
 
 	const onSubmit = async (data: ProfileFormType) => {
-		console.log(data)
+		await new Promise(async (resolve) => {
+			try {
+				const arg = {
+					id: profile.id,
+					...data
+				}
+				const res = await updateProfile(arg)
+				if (!res?.success) {
+					toast.error(res?.message || 'プロフィールの更新に失敗しました')
+					resolve(res.error)
+					return
+				}
+				resolve(res.success)
+				toast.success(res.message)
+				router.refresh()
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error)
+				resolve(error)
+				if (error instanceof Error) {
+					toast.error(error.message)
+				} else {
+					toast.error('アカウント登録に失敗しました')
+				}
+			}
+		})
 	}
 
 	const onReset = () => {
@@ -54,7 +84,7 @@ export const EditProfile = ({
 						リセット
 					</Button>
 					<Button type='submit' size='lg' disabled={isSubmitting}>
-						{isSubmitting ? '送信中...' : '登録'}
+						{isSubmitting ? '送信中...' : '更新'}
 					</Button>
 				</div>
 			</form>
