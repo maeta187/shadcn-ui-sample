@@ -1,5 +1,6 @@
 import type {
 	LoginFormType,
+	ProfileFormType,
 	ResetPassWordFormType,
 	SetPassWordFormType,
 	SignupFormType
@@ -22,6 +23,7 @@ export {
 	Prefecture,
 	PrefectureOptions,
 	PrefectureResponse,
+	ProfileFormType,
 	ResetPassWordFormType,
 	SetPassWordFormType,
 	SignupFormType,
