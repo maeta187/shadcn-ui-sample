@@ -68,3 +68,11 @@ export const SetPassWordFormSchema = SetPassWordFormFields.refine(
 		path: ['confirmPassword']
 	}
 )
+
+export const ProfileFormSchema = SignupFormFields.pick({
+	userName: true,
+	userNameKana: true,
+	gender: true,
+	phoneNumber: true,
+	prefecture: true
+})
