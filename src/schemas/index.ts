@@ -1,5 +1,6 @@
 import {
 	LoginFormSchema,
+	ProfileFormSchema,
 	ResetPassWordSchema,
 	SetPassWordFormSchema,
 	SignupFormSchema
@@ -7,6 +8,7 @@ import {
 
 export {
 	LoginFormSchema,
+	ProfileFormSchema,
 	ResetPassWordSchema,
 	SetPassWordFormSchema,
 	SignupFormSchema
