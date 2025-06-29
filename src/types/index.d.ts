@@ -3,7 +3,8 @@ import type {
 	ProfileFormType,
 	ResetPassWordFormType,
 	SetPassWordFormType,
-	SignupFormType
+	SignupFormType,
+	UpdateProfileType
 } from '@/types/formType'
 import type {
 	Prefecture,
@@ -27,5 +28,6 @@ export {
 	ResetPassWordFormType,
 	SetPassWordFormType,
 	SignupFormType,
-	SignupResult
+	SignupResult,
+	UpdateProfileType
 }
