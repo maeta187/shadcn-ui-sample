@@ -9,6 +9,7 @@ type ProfileData = {
 }
 
 type Profile = {
+	id: string
 	userName: string
 	userNameKana: string
 	gender: Gender
