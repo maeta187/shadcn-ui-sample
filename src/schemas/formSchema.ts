@@ -70,9 +70,13 @@ export const SetPassWordFormSchema = SetPassWordFormFields.refine(
 )
 
 export const ProfileFormSchema = SignupFormFields.pick({
-	userName: true,
-	userNameKana: true,
-	gender: true,
-	phoneNumber: true,
-	prefecture: true
+        userName: true,
+        userNameKana: true,
+        gender: true,
+        phoneNumber: true,
+        prefecture: true
+})
+
+export const EmailFormSchema = SignupFormFields.pick({
+        email: true
 })
