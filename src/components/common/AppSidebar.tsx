@@ -13,21 +13,21 @@ import {
 
 // Menu items.
 const items = [
-	{
-		title: 'プロフィール編集',
-		url: '#',
-		icon: UserCog
-	},
-	{
-		title: 'メールアドレス編集',
-		url: '#',
-		icon: Mail
-	},
-	{
-		title: 'パスワード変更',
-		url: '#',
-		icon: KeyRound
-	}
+        {
+                title: 'プロフィール編集',
+                url: '/profile',
+                icon: UserCog
+        },
+        {
+                title: 'メールアドレス編集',
+                url: '/profile/email',
+                icon: Mail
+        },
+        {
+                title: 'パスワード変更',
+                url: '/auth/password',
+                icon: KeyRound
+        }
 ]
 
 export function AppSidebar() {
