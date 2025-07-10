@@ -15,12 +15,12 @@ import {
 const items = [
 	{
 		title: 'プロフィール編集',
-		url: '#',
+		url: '/profile',
 		icon: UserCog
 	},
 	{
 		title: 'メールアドレス編集',
-		url: '#',
+		url: '/edit/email',
 		icon: Mail
 	},
 	{

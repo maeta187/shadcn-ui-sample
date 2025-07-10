@@ -1,4 +1,5 @@
 import type {
+	EmailFormType,
 	LoginFormType,
 	ProfileFormType,
 	ResetPassWordFormType,
@@ -20,6 +21,7 @@ export type Gender = {
 }
 
 export {
+	EmailFormType,
 	LoginFormType,
 	Prefecture,
 	PrefectureOptions,

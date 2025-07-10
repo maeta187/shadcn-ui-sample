@@ -76,3 +76,7 @@ export const ProfileFormSchema = SignupFormFields.pick({
 	phoneNumber: true,
 	prefecture: true
 })
+
+export const EmailFormSchema = SignupFormFields.pick({
+	email: true
+})
