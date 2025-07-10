@@ -1,4 +1,5 @@
 import {
+	EmailFormSchema,
 	LoginFormSchema,
 	ProfileFormSchema,
 	ResetPassWordSchema,
@@ -7,6 +8,7 @@ import {
 } from '@/schemas/formSchema'
 
 export {
+	EmailFormSchema,
 	LoginFormSchema,
 	ProfileFormSchema,
 	ResetPassWordSchema,
