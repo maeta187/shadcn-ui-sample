@@ -65,7 +65,7 @@ export const EditEmail = ({ email }: EditEmailProps) => {
 	return (
 		<Form {...form}>
 			<form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-8'>
-				<h2 className='text-2xl font-bold'>プロフィール編集</h2>
+				<h2 className='text-2xl font-bold'>メールアアドレス変更</h2>
 				<InputForm control={control} />
 				<div className='flex justify-end space-x-4'>
 					<Button type='button' size='lg' variant='outline' onClick={onReset}>
