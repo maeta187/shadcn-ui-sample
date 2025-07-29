@@ -19,13 +19,13 @@ const items = [
 		icon: UserCog
 	},
 	{
-		title: 'メールアドレス編集',
+		title: 'メールアドレス変更',
 		url: '/edit/email',
 		icon: Mail
 	},
 	{
 		title: 'パスワード変更',
-		url: '#',
+		url: '/edit/password',
 		icon: KeyRound
 	}
 ]
