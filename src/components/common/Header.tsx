@@ -58,6 +58,14 @@ const HeaderNavigationMenu = ({ session }: NavigationProps) => {
 			className: '',
 			variant: 'default',
 			session: !!session
+		},
+		// TODO:画像アップロード機能を実装したら画像を表示するように修正する
+		{
+			title: 'プロフィール',
+			href: '/profile',
+			className: '',
+			variant: 'ghost',
+			session: !session
 		}
 	]
 
